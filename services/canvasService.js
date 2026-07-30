@@ -36,8 +36,7 @@ export function initCanvasService() {
         setupDrawingMode();
         renderLayerList();
 
-        // Attach Events
-        attachCanvasEvents();
+        // Attach Events (Tanpa attachCanvasEvents yang tidak didefinisikan)
         attachLayerEvents();
         attachToolEvents();
         attachSaveResetEvents();
