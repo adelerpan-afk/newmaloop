@@ -10,22 +10,35 @@ export function initPatternGeneratorService() {
     try {
         if (!previewContainer) throw new Error('Elemen preview-area tidak ditemukan!');
         
+        // --- PERBAIKAN UTAMA DI SINI ---
+        // 1. Kosongkan placeholder tulisan di dalam div
         previewContainer.innerHTML = ''; 
-        previewCanvas = new fabric.Canvas(previewContainer, {
+        
+        // 2. Buat elemen <canvas> secara dinamis
+        const canvasEl = document.createElement('canvas'); 
+        previewContainer.appendChild(canvasEl); // Masukkan canvas ke dalam div
+        
+        // 3. Inisialisasi Fabric Canvas menggunakan elemen canvas, BUKAN div
+        previewCanvas = new fabric.Canvas(canvasEl, {
             backgroundColor: '#1e1e1e',
             selection: false
         });
-        
+        // ------------------------------------
+
+        // Set ukuran canvas mengikuti lebar kontainer
         setTimeout(() => { 
-            previewCanvas.setWidth(previewContainer.clientWidth || 400);
-            previewCanvas.setHeight(previewContainer.clientWidth || 400);
-            generatePreviewPattern(); 
+            const width = previewContainer.clientWidth || 400;
+            previewCanvas.setWidth(width);
+            previewCanvas.setHeight(width);
+            generatePreviewPattern(); // Generate pola perdana
         }, 100);
 
+        // Listen resize window agar canvas responsif
         window.addEventListener('resize', () => {
             if(previewCanvas) {
-                previewCanvas.setWidth(previewContainer.clientWidth || 400);
-                previewCanvas.setHeight(previewContainer.clientWidth || 400);
+                const width = previewContainer.clientWidth || 400;
+                previewCanvas.setWidth(width);
+                previewCanvas.setHeight(width);
                 generatePreviewPattern();
             }
         });
@@ -105,7 +118,6 @@ async function createFabricSVG(asset, x, y, size) {
         const cloneGroup = fabric.util.object.clone(templateGroup);
         
         // 3. Terapkan Skala & Posisi
-        // Pastikan tidak membagi dengan nol jika width/height 0
         const maxDim = Math.max(cloneGroup.width, cloneGroup.height) || 1;
         const scale = size / maxDim;
         cloneGroup.scale(scale);
@@ -117,12 +129,9 @@ async function createFabricSVG(asset, x, y, size) {
         });
 
         // 4. Warnai Ulang Seluruh Elemen Path di dalam Group
-        // Catatan: SVG FontAwesome menggunakan "currentColor" atau hitam. 
-        // Kita perlu mengisi ulang semua path.
         cloneGroup.forEachObject((obj) => {
             if (obj.type === 'path' || obj.type === 'circle' || obj.type === 'rect') {
                 obj.set({ fill: asset.color });
-                // Hapus stroke agar warnanya solid
                 obj.set({ stroke: '' }); 
             }
         });
@@ -134,7 +143,7 @@ async function createFabricSVG(asset, x, y, size) {
     }
 }
 
-// --- LOGIKA PRESET (DIUBAH MENJADI ASYNC) ---
+// --- LOGIKA PRESET (ASYNC) ---
 async function generateScatter(canvas, assets, w, h, size, variation) {
     const total = assets.length * 10; 
     const promises = [];
@@ -193,9 +202,6 @@ async function generateStaggered(canvas, assets, w, h, size, variation) {
     const results = await Promise.all(promises);
     results.forEach(obj => { if(obj) canvas.add(obj); });
 }
-
-// ... (Fungsi preset lain: generateDiagonal, generateCluster, dll. Ikuti pola yang sama: buat array promises, await Promise.all, lalu add ke canvas) ...
-// (Untuk menghemat token, saya tulis sisanya di bawah ini mengikuti pola yang sama)
 
 async function generateDiagonal(canvas, assets, w, h, size, variation) {
     const step = size * 1.5;
