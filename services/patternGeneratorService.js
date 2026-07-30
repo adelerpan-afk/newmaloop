@@ -10,30 +10,23 @@ export function initPatternGeneratorService() {
     try {
         if (!previewContainer) throw new Error('Elemen preview-area tidak ditemukan!');
         
-        // --- PERBAIKAN UTAMA DI SINI ---
-        // 1. Kosongkan placeholder tulisan di dalam div
         previewContainer.innerHTML = ''; 
         
-        // 2. Buat elemen <canvas> secara dinamis
         const canvasEl = document.createElement('canvas'); 
-        previewContainer.appendChild(canvasEl); // Masukkan canvas ke dalam div
+        previewContainer.appendChild(canvasEl); 
         
-        // 3. Inisialisasi Fabric Canvas menggunakan elemen canvas, BUKAN div
         previewCanvas = new fabric.Canvas(canvasEl, {
             backgroundColor: '#1e1e1e',
             selection: false
         });
-        // ------------------------------------
 
-        // Set ukuran canvas mengikuti lebar kontainer
         setTimeout(() => { 
             const width = previewContainer.clientWidth || 400;
             previewCanvas.setWidth(width);
             previewCanvas.setHeight(width);
-            generatePreviewPattern(); // Generate pola perdana
+            generatePreviewPattern(); 
         }, 100);
 
-        // Listen resize window agar canvas responsif
         window.addEventListener('resize', () => {
             if(previewCanvas) {
                 const width = previewContainer.clientWidth || 400;
@@ -96,19 +89,27 @@ export async function generatePreviewPattern() {
     }
 }
 
-// HELPER: Load, Cache, Clone, dan Warnai SVG 
+// --- HELPER: Load SVG dengan Error Handling ---
 async function loadSVG(url) {
     if (svgCache[url]) return svgCache[url];
     
     return new Promise((resolve, reject) => {
         fabric.loadSVGFromURL(url, (objects, options) => {
-            const group = fabric.util.groupSVGElements(objects, options);
-            svgCache[url] = group;
-            resolve(group);
-        }, reject);
+            try {
+                const group = fabric.util.groupSVGElements(objects, options);
+                svgCache[url] = group; // Simpan di cache hanya jika sukses
+                resolve(group);
+            } catch (err) {
+                reject(err);
+            }
+        }, (error) => {
+            // Callback error dari Fabric.js
+            reject(error || new Error('Fabric gagal memuat SVG'));
+        });
     });
 }
 
+// --- HELPER: Buat Objek SVG (Dengan Fallback Geometri) ---
 async function createFabricSVG(asset, x, y, size) {
     try {
         // 1. Ambil template dari cache
@@ -128,7 +129,7 @@ async function createFabricSVG(asset, x, y, size) {
             originY: 'center' 
         });
 
-        // 4. Warnai Ulang Seluruh Elemen Path di dalam Group
+        // 4. Warnai Ulang Path
         cloneGroup.forEachObject((obj) => {
             if (obj.type === 'path' || obj.type === 'circle' || obj.type === 'rect') {
                 obj.set({ fill: asset.color });
@@ -137,9 +138,41 @@ async function createFabricSVG(asset, x, y, size) {
         });
 
         return cloneGroup;
+
     } catch (error) {
-        handleError(error, `createFabricSVG - Gagal memuat ${asset.iconUrl}`);
-        return null; 
+        // --- FALLBACK STRATEGY ---
+        // Jika load SVG gagal karena CORS atau jaringan, buat bentuk dasar pengganti
+        console.warn(`⚠️ SVG Gagal dimuat: ${asset.iconUrl}. Menggunakan fallback geometri.`);
+        
+        let fallbackShape;
+        const radius = size / 2;
+        
+        // Deteksi nama ikon untuk fallback yang sesuai (opsional, fallback default lingkaran)
+        if (asset.iconUrl.includes('square') || asset.iconUrl.includes('gift') || asset.iconUrl.includes('snowflake')) {
+            fallbackShape = new fabric.Rect({
+                width: size, height: size,
+                fill: asset.color,
+                left: x, top: y,
+                originX: 'center', originY: 'center'
+            });
+        } else if (asset.iconUrl.includes('triangle') || asset.iconUrl.includes('caret')) {
+            fallbackShape = new fabric.Triangle({
+                width: size, height: size,
+                fill: asset.color,
+                left: x, top: y,
+                originX: 'center', originY: 'center'
+            });
+        } else {
+            // Fallback default: Lingkaran
+            fallbackShape = new fabric.Circle({
+                radius: radius,
+                fill: asset.color,
+                left: x, top: y,
+                originX: 'center', originY: 'center'
+            });
+        }
+        
+        return fallbackShape;
     }
 }
 
