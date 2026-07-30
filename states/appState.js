@@ -1,10 +1,14 @@
 export const appState = {
     currentCategory: 'Semua',
     uploadedFiles: [],
-    savedImages: []
+    savedImages: [],
+    
+    // --- State Baru untuk Live Preview ---
+    activePreset: 'Grid', // Default preset
+    objectSize: 45,       // Ambil dari slider "Ukuran Objek"
+    variation: 50         // Ambil dari slider "Variasi"
 };
 
-// Fungsi utilitas untuk update state agar lebih terkontrol
 export function updateState(key, value) {
     if (key in appState) {
         appState[key] = value;
