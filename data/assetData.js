@@ -1,5 +1,5 @@
 export const allAssets = [
-    // Shapes (10)
+    // --- SHAPES (10) ---
     { id: 1, name: 'Circle', icon: 'fa-circle', category: 'Shapes', color: 'orange' },
     { id: 2, name: 'Square', icon: 'fa-square', category: 'Shapes', color: 'green' },
     { id: 3, name: 'Star', icon: 'fa-star', category: 'Shapes', color: 'purple' },
@@ -10,8 +10,8 @@ export const allAssets = [
     { id: 8, name: 'Pentagon', icon: 'fa-circle-notch', category: 'Shapes', color: 'purple' },
     { id: 9, name: 'Heart', icon: 'fa-heart', category: 'Shapes', color: 'pink' },
     { id: 10, name: 'Arrow', icon: 'fa-arrow-up', category: 'Shapes', color: 'grey' },
-    
-    // Coffee (10)
+
+    // --- COFFEE (10) ---
     { id: 11, name: 'Mug Hot', icon: 'fa-mug-hot', category: 'Coffee', color: 'orange' },
     { id: 12, name: 'Mug Tea', icon: 'fa-mug-saucer', category: 'Coffee', color: 'purple' },
     { id: 13, name: 'Glass', icon: 'fa-glass-water', category: 'Coffee', color: 'blue' },
@@ -22,8 +22,8 @@ export const allAssets = [
     { id: 18, name: 'Wine', icon: 'fa-wine-glass', category: 'Coffee', color: 'purple' },
     { id: 19, name: 'Martini', icon: 'fa-martini-glass-citrus', category: 'Coffee', color: 'blue' },
     { id: 20, name: 'Coffee Bean', icon: 'fa-seedling', category: 'Coffee', color: 'green' },
-    
-    // Nature (10)
+
+    // --- NATURE (10) ---
     { id: 21, name: 'Leaf', icon: 'fa-leaf', category: 'Nature', color: 'green' },
     { id: 22, name: 'Tree', icon: 'fa-tree', category: 'Nature', color: 'green' },
     { id: 23, name: 'Flower', icon: 'fa-fan', category: 'Nature', color: 'pink' },
@@ -34,8 +34,8 @@ export const allAssets = [
     { id: 28, name: 'Mountain', icon: 'fa-mountain', category: 'Nature', color: 'blue' },
     { id: 29, name: 'Droplet', icon: 'fa-droplet', category: 'Nature', color: 'blue' },
     { id: 30, name: 'Seedling', icon: 'fa-seedling', category: 'Nature', color: 'green' },
-    
-    // Ocean (10)
+
+    // --- OCEAN (10) ---
     { id: 31, name: 'Fish', icon: 'fa-fish', category: 'Ocean', color: 'blue' },
     { id: 32, name: 'Ship', icon: 'fa-ship', category: 'Ocean', color: 'orange' },
     { id: 33, name: 'Anchor', icon: 'fa-anchor', category: 'Ocean', color: 'grey' },
@@ -46,8 +46,8 @@ export const allAssets = [
     { id: 38, name: 'Whale', icon: 'fa-shield-halved', category: 'Ocean', color: 'purple' },
     { id: 39, name: 'Shell', icon: 'fa-circle', category: 'Ocean', color: 'orange' },
     { id: 40, name: 'Starfish', icon: 'fa-star', category: 'Ocean', color: 'pink' },
-    
-    // Abstract (10)
+
+    // --- ABSTRACT (10) ---
     { id: 41, name: 'Bolt', icon: 'fa-bolt', category: 'Abstract', color: 'orange' },
     { id: 42, name: 'Shapes', icon: 'fa-shapes', category: 'Abstract', color: 'purple' },
     { id: 43, name: 'Palette', icon: 'fa-palette', category: 'Abstract', color: 'pink' },
@@ -58,11 +58,11 @@ export const allAssets = [
     { id: 48, name: 'Smile', icon: 'fa-face-smile', category: 'Abstract', color: 'yellow' },
     { id: 49, name: 'Sparkles', icon: 'fa-wand-magic-sparkles', category: 'Abstract', color: 'purple' },
     { id: 50, name: 'Music', icon: 'fa-music', category: 'Abstract', color: 'pink' },
-    
-    // Geometry (10)
+
+    // --- GEOMETRY (10) ---
     { id: 51, name: 'Circle', icon: 'fa-circle', category: 'Geometry', color: 'orange' },
     { id: 52, name: 'Square', icon: 'fa-square', category: 'Geometry', color: 'green' },
-    { id: 53, name: 'Diamond', icon: 'fa-square' , category: 'Geometry', color: 'purple' },
+    { id: 53, name: 'Diamond', icon: 'fa-square', category: 'Geometry', color: 'purple' },
     { id: 54, name: 'Triangle', icon: 'fa-caret-up', category: 'Geometry', color: 'blue' },
     { id: 55, name: 'Pentagon', icon: 'fa-star', category: 'Geometry', color: 'grey' },
     { id: 56, name: 'Hexagon', icon: 'fa-snowflake', category: 'Geometry', color: 'pink' },
@@ -70,8 +70,8 @@ export const allAssets = [
     { id: 58, name: 'Arrow', icon: 'fa-arrow-left-right', category: 'Geometry', color: 'green' },
     { id: 59, name: 'Up', icon: 'fa-arrow-up', category: 'Geometry', color: 'purple' },
     { id: 60, name: 'Down', icon: 'fa-arrow-down', category: 'Geometry', color: 'blue' },
-    
-    // Space (10)
+
+    // --- SPACE (10) ---
     { id: 61, name: 'Rocket', icon: 'fa-rocket', category: 'Space', color: 'orange' },
     { id: 62, name: 'Meteor', icon: 'fa-meteor', category: 'Space', color: 'green' },
     { id: 63, name: 'Planet', icon: 'fa-planet-ring', category: 'Space', color: 'purple' },
@@ -82,8 +82,8 @@ export const allAssets = [
     { id: 68, name: 'Moon', icon: 'fa-moon', category: 'Space', color: 'grey' },
     { id: 69, name: 'Bolt', icon: 'fa-bolt', category: 'Space', color: 'green' },
     { id: 70, name: 'Shuttle', icon: 'fa-jet-fighter-up', category: 'Space', color: 'purple' },
-    
-    // Food (10)
+
+    // --- FOOD (10) ---
     { id: 71, name: 'Burger', icon: 'fa-burger', category: 'Food', color: 'orange' },
     { id: 72, name: 'Pizza', icon: 'fa-pizza-slice', category: 'Food', color: 'purple' },
     { id: 73, name: 'Ice Cream', icon: 'fa-ice-cream', category: 'Food', color: 'pink' },
@@ -94,4 +94,40 @@ export const allAssets = [
     { id: 78, name: 'Egg', icon: 'fa-egg', category: 'Food', color: 'grey' },
     { id: 79, name: 'Bread', icon: 'fa-bread-slice', category: 'Food', color: 'orange' },
     { id: 80, name: 'Cake', icon: 'fa-cake-candles', category: 'Food', color: 'pink' },
+
+    // --- HALLOWEEN (10 - BARU) ---
+    { id: 81, name: 'Pumpkin', icon: 'fa-jack-o-lantern', category: 'Halloween', color: 'orange' },
+    { id: 82, name: 'Ghost', icon: 'fa-ghost', category: 'Halloween', color: 'grey' },
+    { id: 83, name: 'Spider', icon: 'fa-spider', category: 'Halloween', color: 'grey' },
+    { id: 84, name: 'Bat', icon: 'fa-bat', category: 'Halloween', color: 'purple' },
+    { id: 85, name: 'Skull', icon: 'fa-skull', category: 'Halloween', color: 'grey' },
+    { id: 86, name: 'Witch Hat', icon: 'fa-hat-wizard', category: 'Halloween', color: 'purple' },
+    { id: 87, name: 'Cauldron', icon: 'fa-cauldron', category: 'Halloween', color: 'green' },
+    { id: 88, name: 'Zombie', icon: 'fa-user-zombie', category: 'Halloween', color: 'green' },
+    { id: 89, name: 'Candy', icon: 'fa-candy-cane', category: 'Halloween', color: 'pink' },
+    { id: 90, name: 'Moon', icon: 'fa-moon', category: 'Halloween', color: 'orange' },
+
+    // --- CHRISTMAS (10 - BARU) ---
+    { id: 91, name: 'Christmas Tree', icon: 'fa-tree', category: 'Christmas', color: 'green' },
+    { id: 92, name: 'Star', icon: 'fa-star', category: 'Christmas', color: 'orange' },
+    { id: 93, name: 'Snowflake', icon: 'fa-snowflake', category: 'Christmas', color: 'blue' },
+    { id: 94, name: 'Gift', icon: 'fa-gift', category: 'Christmas', color: 'pink' },
+    { id: 95, name: 'Santa Hat', icon: 'fa-hat-wizard', category: 'Christmas', color: 'red' },
+    { id: 96, name: 'Candy Cane', icon: 'fa-candy-cane', category: 'Christmas', color: 'pink' },
+    { id: 97, name: 'Reindeer', icon: 'fa-horse-head', category: 'Christmas', color: 'purple' }, // horse-head is closest to deer
+    { id: 98, name: 'Wreath', icon: 'fa-circle', category: 'Christmas', color: 'green' },
+    { id: 99, name: 'Stocking', icon: 'fa-sock', category: 'Christmas', color: 'red' },
+    { id: 100, name: 'Snowman', icon: 'fa-snowman', category: 'Christmas', color: 'grey' },
+
+    // --- NEW YEAR (10 - BARU) ---
+    { id: 101, name: 'Fireworks', icon: 'fa-wand-magic-sparkles', category: 'New Year', color: 'orange' },
+    { id: 102, name: 'Clock', icon: 'fa-clock', category: 'New Year', color: 'grey' },
+    { id: 103, name: 'Champagne', icon: 'fa-champagne-glasses', category: 'New Year', color: 'orange' },
+    { id: 104, name: 'Balloon', icon: 'fa-balloon', category: 'New Year', color: 'pink' },
+    { id: 105, name: 'Party Horn', icon: 'fa-bullhorn', category: 'New Year', color: 'purple' },
+    { id: 106, name: 'Confetti', icon: 'fa-confetti', category: 'New Year', color: 'blue' },
+    { id: 107, name: 'Countdown', icon: 'fa-hourglass-end', category: 'New Year', color: 'grey' },
+    { id: 108, name: 'Calendar', icon: 'fa-calendar', category: 'New Year', color: 'orange' },
+    { id: 109, name: 'Ribbon', icon: 'fa-ribbon', category: 'New Year', color: 'pink' },
+    { id: 110, name: 'Star Burst', icon: 'fa-sparkles', category: 'New Year', color: 'yellow' },
 ];
