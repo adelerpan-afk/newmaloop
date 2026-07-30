@@ -1,0 +1,19 @@
+/ (Root folder)
+│
+├── index.html
+├── style.css
+├── main.js
+│
+├── data/
+│   └── assetData.js
+│
+├── states/
+│   └── appState.js
+│
+├── utils/
+│   └── errorHandler.js
+│
+└── services/
+    ├── assetService.js
+    ├── inputAssetService.js
+    └── canvasService.js
